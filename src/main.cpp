@@ -1,5 +1,6 @@
 #include <raylib.h>
-#include "grid.hpp"
+#include <iostream>
+#include "sim.hpp"
 
 int main()
 {
@@ -11,8 +12,13 @@ int main()
     
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Game of Life");
     SetTargetFPS(FPS);
-    Grid grid{WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE};
-    grid.SetValue(0,0,1);
+    Sim sim(WINDOW_WIDTH, WINDOW_HEIGHT,CELL_SIZE);
+    sim.SetCellValue(5,29,1);
+    sim.SetCellValue(6,0,1);
+    sim.SetCellValue(5,0,1);
+    sim.SetCellValue(4,0,1);
+
+    std::cout << sim.CountLiveNeighbors(5,29) << std::endl;
 
     //Sim Loop
     while(WindowShouldClose() == false) {
@@ -23,7 +29,7 @@ int main()
         //3. Drawing
         BeginDrawing();
         ClearBackground(GREY);
-        grid.Draw();
+        sim.Draw();
         EndDrawing();
     }
 
