@@ -6,7 +6,7 @@ void Grid::Draw(){
         for(int column = 0; column < columns; column++){
             Color color = cells[row][column] ? Color{0, 255, 0, 255} : Color{55, 55, 55, 255};
             //minus 1 allows for grid lines
-            DrawRectangle(column * cellSize, row * cellSize, cellSize -1, cellSize -1, color);
+            DrawRectangle(column * cellSize, row * cellSize, cellSize - 1, cellSize - 1, color);
         }
     }
 }
@@ -36,9 +36,23 @@ bool Grid::IsWithinBounds(int row, int column){
 void Grid::FillRandom() {
     for(int row = 0; row < rows; row++){
         for (int column = 0; column < columns; column++){
-            int randomValue = GetRandomValue(0,4);
+            int randomValue = GetRandomValue(0, 4);
             //allows more for chance of '0' cells
             cells[row][column] = (randomValue == 4) ? 1 : 0;
         }
+    }
+}
+
+void Grid::Clear(){
+    for(int row = 0; row < rows; row++){
+        for(int column = 0; column < columns; column++){
+            cells[row][column] = 0;
+        }
+    }
+}
+
+void Grid::ToggleCell(int row, int column){
+    if(IsWithinBounds(row, column)){
+        cells[row][column] = !cells[row][column];
     }
 }
