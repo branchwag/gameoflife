@@ -13,18 +13,19 @@ int main()
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Game of Life");
     SetTargetFPS(FPS);
     Sim sim(WINDOW_WIDTH, WINDOW_HEIGHT,CELL_SIZE);
-    sim.SetCellValue(5,29,1);
-    sim.SetCellValue(6,0,1);
-    sim.SetCellValue(5,0,1);
-    sim.SetCellValue(4,0,1);
+    // sim.SetCellValue(5,29,1);
+    // sim.SetCellValue(6,0,1);
+    // sim.SetCellValue(5,0,1);
+    // sim.SetCellValue(4,0,1);
 
-    std::cout << sim.CountLiveNeighbors(5,29) << std::endl;
+    //std::cout << sim.CountLiveNeighbors(5,29) << std::endl;
 
     //Sim Loop
     while(WindowShouldClose() == false) {
         //1. Event Handling
 
         //2. Updating State
+        sim.Update();
 
         //3. Drawing
         BeginDrawing();
